@@ -2,7 +2,6 @@
 A websocket communicator in nodejs and browser.
 
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
-[![language](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://github.com/vuejs/vue) 
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
 [![Build Status](https://travis-ci.org/yuda-lyu/w-comor-websocket.svg?branch=master)](https://travis-ci.org/yuda-lyu/w-comor-websocket) 
 [![license](https://img.shields.io/npm/l/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
