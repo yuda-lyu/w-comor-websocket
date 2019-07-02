@@ -167,10 +167,7 @@ function WsServer(opt) {
             let token = getdtvstr(data, 'token')
 
             //vd
-            let vd = true
-            if (isfun(opt.authenticate)) {
-                vd = await opt.authenticate(token)
-            }
+            let vd = await authenticate(token)
 
             //check
             if (vd) {
