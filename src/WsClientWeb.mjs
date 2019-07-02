@@ -177,7 +177,6 @@ function WsClientWeb(opt) {
 
                     //add func
                     wo[func] = async function(input) {
-                        await pm //等待連線open才執行
                         return execFunction(func, input)
                     }
 

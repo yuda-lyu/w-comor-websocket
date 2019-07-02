@@ -1,6 +1,6 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A websocket communicator in nodejs and browser.",
   "main": "dist/ws-server.umd.js",
   "dependencies": {

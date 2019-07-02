@@ -131,7 +131,7 @@ new WsClientNode(opt)
 ```
 [Necessary] Add script for ws-client-web.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.2/dist/ws-client-web.umd.js"></script>></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.3/dist/ws-client-web.umd.js"></script>></script>
 ```
 #### Example for `ws-client-web`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
