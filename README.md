@@ -5,7 +5,7 @@ A websocket communicator in nodejs and browser.
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
 [![Build Status](https://travis-ci.org/yuda-lyu/w-comor-websocket.svg?branch=master)](https://travis-ci.org/yuda-lyu/w-comor-websocket) 
 [![license](https://img.shields.io/npm/l/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
-[![gzip file size](http://img.badgesize.io/yuda-lyu/w-comor-websocket/master/dist/w-comor-websocket.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-comor-websocket)
+[![gzip file size](http://img.badgesize.io/yuda-lyu/w-comor-websocket/master/dist/ws-server.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-comor-websocket)
 [![npm download](https://img.shields.io/npm/dt/w-comor-websocket.svg)](https://npmjs.org/package/w-comor-websocket) 
 [![jsdelivr download](https://img.shields.io/jsdelivr/npm/hm/w-comor-websocket.svg)](https://www.jsdelivr.com/package/npm/w-comor-websocket)
 
