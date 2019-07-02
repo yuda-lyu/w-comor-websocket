@@ -4,6 +4,7 @@ import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
+import haskey from 'wsemi/src/haskey.mjs'
 
 
 /**
@@ -40,8 +41,9 @@ import isfun from 'wsemi/src/isfun.mjs'
  * }
  *
  * //WsClientNode
- * WsClientNode(opt)
+ * new WsClientNode(opt)
  *     .then(function(wo) {
+ *         console.log('client nodejs: funcs: ', wo)
  *
  *         function core(ps) {
  *             wo.add(ps)
@@ -100,6 +102,7 @@ function WsClientNode(opt) {
             if (isfun(opt.open)) {
                 opt.open()
             }
+            execFunction('getFuncs', null)
         })
 
 
@@ -152,10 +155,10 @@ function WsClientNode(opt) {
             let data = j2o(message)
 
             //get sys funcs
-            if (get(data, 'sys') === 'sys') {
+            if (get(data, 'sys') === 'sys' && haskey(data, 'funcs')) {
 
                 //funcs
-                let funcs = get(data, 'funcs')
+                let funcs = data['funcs']
 
                 //clear wo
                 wo = {}

@@ -1,11 +1,13 @@
 import WebSocket from 'ws'
 import keys from 'lodash/keys'
+import genPm from 'wsemi/src/genPm.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import urlParse from 'wsemi/src/urlParse.mjs'
 import getdtvstr from 'wsemi/src/getdtvstr.mjs'
 import getdtv from 'wsemi/src/getdtv.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
+import arrhas from 'wsemi/src/arrhas.mjs'
 
 
 /**
@@ -25,15 +27,32 @@ import isfun from 'wsemi/src/isfun.mjs'
  *
  * let opt = {
  *     port: 8080,
- *     authenticate: async function(token) { //使用token驗證使用者身份
+ *     authenticate: async function(token) {
+ *         //使用token驗證使用者身份
  *         return new Promise(function(resolve, reject) {
  *             setTimeout(function() {
  *                 resolve(true)
  *             }, 1000)
  *         })
  *     },
- *     funcs: { //func名稱不能為url,token,open,close,error,reconn
+ *     filterFuncs: async function(token, funcs) {
+ *         //使用token驗證使用者身份與過濾可用funcs
+ *         return new Promise(function(resolve, reject) {
+ *             funcs = funcs.filter(function(v) {
+ *                 return v.indexOf('Hide') < 0
+ *             })
+ *             resolve(funcs)
+ *         })
+ *     },
+ *     funcs: {
  *         add: function({ p1, p2 }) {
+ *             return new Promise(function(resolve, reject) {
+ *                 setTimeout(function() {
+ *                     resolve(p1 + p2)
+ *                 }, random(100, 3000))
+ *             })
+ *         },
+ *         addHide: function({ p1, p2 }) {
  *             return new Promise(function(resolve, reject) {
  *                 setTimeout(function() {
  *                     resolve(p1 + p2)
@@ -50,7 +69,7 @@ import isfun from 'wsemi/src/isfun.mjs'
  *     },
  * }
  *
- * WsServer(opt)
+ * new WsServer(opt)
  *
  */
 function WsServer(opt) {
@@ -62,15 +81,43 @@ function WsServer(opt) {
     }
 
 
-    //send funcs
+    //funcs
     let funcs = []
     if (haskey(opt, 'funcs')) {
         funcs = keys(opt['funcs'])
     }
 
 
+    // //check notlist
+    // let notlist = [
+    //     'url', 'token', 'open', 'close', 'error', 'reconn', 'getFuncs', 'filterFuncs'
+    // ]
+    // each(notlist, function(v) {
+    //     let b = arrhas(funcs, v)
+    //     if (b) {
+    //         console.warn(`funcs can not include: ${v}`)
+    //     }
+    // })
+
+
     //WebSocketServer
     let WebSocketServer = WebSocket.Server
+
+
+    //authenticate
+    function authenticate(token) {
+        let pm = genPm()
+        if (isfun(opt.authenticate)) {
+            opt.authenticate(token)
+                .then(function(vd) {
+                    pm.resolve(vd)
+                })
+        }
+        else {
+            pm.resolve(true)
+        }
+        return pm
+    }
 
 
     //serverSettings
@@ -85,10 +132,7 @@ function WsServer(opt) {
             let token = getdtvstr(data, 'token')
 
             //vd
-            let vd = true
-            if (isfun(opt.authenticate)) {
-                vd = await opt.authenticate(token)
-            }
+            let vd = await authenticate(token)
 
             //callback
             done(vd)
@@ -112,14 +156,6 @@ function WsServer(opt) {
         clients.push(wsc)
 
 
-        //send funcs
-        wsc.send(JSON.stringify({ sys: 'sys', funcs: funcs }), function(err) {
-            if (err) {
-                console.log(`Server: send funcs error: ${err}`)
-            }
-        })
-
-
         //message
         wsc.on('message', async function(message) {
             //console.log('message', message)
@@ -131,7 +167,10 @@ function WsServer(opt) {
             let token = getdtvstr(data, 'token')
 
             //vd
-            let vd = await opt.authenticate(token)
+            let vd = true
+            if (isfun(opt.authenticate)) {
+                vd = await opt.authenticate(token)
+            }
 
             //check
             if (vd) {
@@ -142,24 +181,42 @@ function WsServer(opt) {
                 //input
                 let input = getdtv(data, 'input')
 
-                //check funcs
-                if (haskey(opt, 'funcs')) {
-                    if (haskey(opt['funcs'], func)) {
+                //getFuncs
+                if (func === 'getFuncs') {
 
-                        //exec function
-                        let output = await opt['funcs'][func](input)
+                    if (isfun(opt.filterFuncs)) {
+                        funcs = await opt.filterFuncs(token, funcs)
+                    }
 
-                        //add output
-                        data['output'] = output
+                    //send funcs
+                    if (wsc.readyState === WebSocket.OPEN) {
+                        wsc.send(JSON.stringify({ sys: 'sys', funcs: funcs }), function(err) {
+                            if (err) {
+                                console.log(`Server: send funcs error: ${err}`)
+                            }
+                        })
+                    }
 
-                        //send
+                }
+
+                //call
+                if (arrhas(funcs, func)) {
+
+                    //call func in opt.funcs
+                    let output = await opt['funcs'][func](input)
+
+                    //add output
+                    data['output'] = output
+
+                    //send
+                    if (wsc.readyState === WebSocket.OPEN) {
                         wsc.send(JSON.stringify(data), function(err) {
                             if (err) {
                                 console.log(`Server: send output error: ${err}`)
                             }
                         })
-
                     }
+
                 }
 
             }
@@ -185,7 +242,7 @@ function WsServer(opt) {
 
 
     setInterval(function() {
-        console.log(`Server now clients: ${clients.length}`)
+        console.log(`Server[port:${serverSettings.port}] now clients: ${clients.length}`)
     }, 1000)
 
 

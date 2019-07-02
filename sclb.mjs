@@ -2,33 +2,34 @@
 import WsClientNode from './dist/ws-client-node.umd.js'
 
 let opt = {
-    url: 'ws://localhost:8080',
+    url: 'ws://localhost:8081',
     token: '*',
     open: function() {
-        console.log('client b: open')
+        console.log('client nodejs[port:8081]: open')
     },
     close: function() {
-        console.log('client b: close')
+        console.log('client nodejs[port:8081]: close')
     },
     error: function(err) {
-        console.log('client b: error:', err)
+        console.log('client nodejs[port:8081]: error:', err)
     },
     reconn: function() {
-        console.log('client b: reconn')
+        console.log('client nodejs[port:8081]: reconn')
     },
 }
 
-WsClientNode(opt)
+new WsClientNode(opt)
     .then(function(wo) {
+        console.log('client nodejs[port:8081]: funcs: ', wo)
 
         function core(ps) {
             wo.add(ps)
                 .then(function(r) {
-                    console.log(`client b: add(${JSON.stringify(ps)})=${r}`)
+                    console.log(`client nodejs[port:8081]: add(${JSON.stringify(ps)})=${r}`)
                 })
             wo.minu(ps)
                 .then(function(r) {
-                    console.log(`client b: minu(${JSON.stringify(ps)})=${r}`)
+                    console.log(`client nodejs[port:8081]: minu(${JSON.stringify(ps)})=${r}`)
                 })
         }
 

@@ -3,6 +3,7 @@ import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
+import haskey from 'wsemi/src/haskey.mjs'
 
 
 /**
@@ -42,17 +43,18 @@ import isfun from 'wsemi/src/isfun.mjs'
  *
  *     //WsClientWeb
  *     let WsClientWeb = window['ws-client-web']
- *     WsClientWeb(opt)
+ *     new WsClientWeb(opt)
  *         .then(function(wo) {
+ *             consoloe.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))
  *
  *             function core(ps) {
  *                 wo.add(ps)
  *                     .then(function(r) {
- *                         consoloe.log(`client web: add(${JSON.stringify(ps)})=${r}`)
+ *                         consoloe.log('client web: add('+JSON.stringify(ps)+')='+r)
  *                     })
  *                 wo.minu(ps)
  *                     .then(function(r) {
- *                         consoloe.log(`client web: minu(${JSON.stringify(ps)})=${r}`)
+ *                         consoloe.log('client web: minu('+JSON.stringify(ps)+')='+r)
  *                     })
  *             }
  *
@@ -103,6 +105,7 @@ function WsClientWeb(opt) {
             if (isfun(opt.open)) {
                 opt.open()
             }
+            execFunction('getFuncs', null)
         }
 
 
@@ -158,10 +161,10 @@ function WsClientWeb(opt) {
             let data = j2o(message)
 
             //get sys funcs
-            if (get(data, 'sys') === 'sys') {
+            if (get(data, 'sys') === 'sys' && haskey(data, 'funcs')) {
 
                 //funcs
-                let funcs = get(data, 'funcs')
+                let funcs = data['funcs']
 
                 //clear wo
                 wo = {}
