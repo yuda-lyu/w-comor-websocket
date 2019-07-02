@@ -52,7 +52,7 @@ let opt = {
             resolve(funcs)
         })
     },
-    funcs: { //func名稱不能為url,token,open,close,error,reconn
+    funcs: {
         add: function({ p1, p2 }) {
             return new Promise(function(resolve, reject) {
                 setTimeout(function() {
