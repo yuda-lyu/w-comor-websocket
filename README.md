@@ -82,31 +82,38 @@ let opt = {
     url: 'ws://localhost:8080',
     token: '*',
     open: function() {
-        consoloe.log('client nodejs: open')
+        console.log('client nodejs: open')
     },
     close: function() {
-        consoloe.log('client nodejs: close')
+        console.log('client nodejs: close')
     },
     error: function(err) {
-        consoloe.log('client nodejs: error:', err)
+        console.log('client nodejs: error:', err)
     },
     reconn: function() {
-        consoloe.log('client nodejs: reconn')
+        console.log('client nodejs: reconn')
     },
 }
 
 //WsClientNode
 new WsClientNode(opt)
     .then(function(wo) {
-
+        console.log('client nodejs: funcs: ', wo)
+        
         function core(ps) {
             wo.add(ps)
                 .then(function(r) {
-                    consoloe.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)
+                    console.log('client nodejs: add(' + JSON.stringify(ps) + ')=' + r)
+                })
+                .catch(function(err) {
+                    console.log('client nodejs: add: catch: ', err)
                 })
             wo.minu(ps)
                 .then(function(r) {
-                    consoloe.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)
+                    console.log('client nodejs: minu(' + JSON.stringify(ps) + ')=' + r)
+                })
+                .catch(function(err) {
+                    console.log('client nodejs: minu: catch: ', err)
                 })
         }
 
@@ -141,16 +148,16 @@ let opt = {
     url: 'ws://localhost:8080',
     token: '*',
     open: function() {
-        consoloe.log('client web: open')
+        console.log('client web: open')
     },
     close: function() {
-        consoloe.log('client web: close')
+        console.log('client web: close')
     },
     error: function(err) {
-        consoloe.log('client web: error:', err)
+        console.log('client web: error:', err)
     },
     reconn: function() {
-        consoloe.log('client web: reconn')
+        console.log('client web: reconn')
     },
 }
 
@@ -158,15 +165,22 @@ let opt = {
 let WsClientWeb = window['ws-client-web']
 new WsClientWeb(opt)
     .then(function(wo) {
-
+        console.log('client web: funcs: ', wo)
+        
         function core(ps) {
             wo.add(ps)
                 .then(function(r) {
-                    consoloe.log(`client web: add(${JSON.stringify(ps)})=${r}`)
+                    console.log('client web: add('+JSON.stringify(ps)+')='+r)
+                })
+                .catch(function(err) {
+                    console.log('client web: add: catch: ', err)
                 })
             wo.minu(ps)
                 .then(function(r) {
-                    consoloe.log(`client web: minu(${JSON.stringify(ps)})=${r}`)
+                    console.log('client web: minu('+JSON.stringify(ps)+')='+r)
+                })
+                .catch(function(err) {
+                    console.log('client web: minu: catch: ', err)
                 })
         }
 

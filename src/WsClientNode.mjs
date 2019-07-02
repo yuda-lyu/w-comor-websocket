@@ -27,16 +27,16 @@ import haskey from 'wsemi/src/haskey.mjs'
  *     url: 'ws://localhost:8080',
  *     token: '*',
  *     open: function() {
- *         consoloe.log('client nodejs: open')
+ *         console.log('client nodejs: open')
  *     },
  *     close: function() {
- *         consoloe.log('client nodejs: close')
+ *         console.log('client nodejs: close')
  *     },
  *     error: function(err) {
- *         consoloe.log('client nodejs: error:', err)
+ *         console.log('client nodejs: error:', err)
  *     },
  *     reconn: function() {
- *         consoloe.log('client nodejs: reconn')
+ *         console.log('client nodejs: reconn')
  *     },
  * }
  *
@@ -48,11 +48,17 @@ import haskey from 'wsemi/src/haskey.mjs'
  *         function core(ps) {
  *             wo.add(ps)
  *                 .then(function(r) {
- *                     consoloe.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)
+ *                     console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)
+ *                 })
+ *                 .catch(function(err) {
+ *                     console.log('client nodejs: add: catch: ', err)
  *                 })
  *             wo.minu(ps)
  *                 .then(function(r) {
- *                     consoloe.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)
+ *                     console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)
+ *                 })
+ *                 .catch(function(err) {
+ *                     console.log('client nodejs: minu: catch: ', err)
  *                 })
  *         }
  *
@@ -107,8 +113,8 @@ function WsClientNode(opt) {
 
 
         //execFunction
-        function execFunction(func, input) {
-            let df = genPm()
+        function execFunction(func, input = null) {
+            let pmm = genPm()
 
             //_id
             let _id = genID()
@@ -140,12 +146,12 @@ function WsClientNode(opt) {
                 if (msgs[_id] !== null) {
                     let output = get(msgs[_id], 'output')
                     delete msgs[_id]
-                    df.resolve(output)
+                    pmm.resolve(output)
                     clearInterval(t)
                 }
             }, 1000)
 
-            return df
+            return pmm
         }
 
         //message

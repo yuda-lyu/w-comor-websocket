@@ -28,16 +28,16 @@ import haskey from 'wsemi/src/haskey.mjs'
  *         url: 'ws://localhost:8080',
  *         token: '*',
  *         open: function() {
- *             consoloe.log('client web: open')
+ *             console.log('client web: open')
  *         },
  *         close: function() {
- *             consoloe.log('client web: close')
+ *             console.log('client web: close')
  *         },
  *         error: function(err) {
- *             consoloe.log('client web: error:', err)
+ *             console.log('client web: error:', err)
  *         },
  *         reconn: function() {
- *             consoloe.log('client web: reconn')
+ *             console.log('client web: reconn')
  *         },
  *     }
  *
@@ -45,16 +45,22 @@ import haskey from 'wsemi/src/haskey.mjs'
  *     let WsClientWeb = window['ws-client-web']
  *     new WsClientWeb(opt)
  *         .then(function(wo) {
- *             consoloe.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))
+ *             console.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))
  *
  *             function core(ps) {
  *                 wo.add(ps)
  *                     .then(function(r) {
- *                         consoloe.log('client web: add('+JSON.stringify(ps)+')='+r)
+ *                         console.log('client web: add('+JSON.stringify(ps)+')='+r)
+ *                     })
+ *                     .catch(function(err) {
+ *                         console.log('client web: add: catch: ', err)
  *                     })
  *                 wo.minu(ps)
  *                     .then(function(r) {
- *                         consoloe.log('client web: minu('+JSON.stringify(ps)+')='+r)
+ *                         console.log('client web: minu('+JSON.stringify(ps)+')='+r)
+ *                     })
+ *                     .catch(function(err) {
+ *                         console.log('client web: minu: catch: ', err)
  *                     })
  *             }
  *
@@ -110,8 +116,8 @@ function WsClientWeb(opt) {
 
 
         //execFunction
-        function execFunction(func, input) {
-            let df = genPm()
+        function execFunction(func, input = null) {
+            let pmm = genPm()
 
             //_id
             let _id = genID()
@@ -143,12 +149,12 @@ function WsClientWeb(opt) {
                 if (msgs[_id] !== null) {
                     let output = get(msgs[_id], 'output')
                     delete msgs[_id]
-                    df.resolve(output)
+                    pmm.resolve(output)
                     clearInterval(t)
                 }
             }, 1000)
 
-            return df
+            return pmm
         }
 
         //message, 瀏覽器端為onmessage

@@ -25,11 +25,17 @@ new WsClientNode(opt)
         function core(ps) {
             wo.add(ps)
                 .then(function(r) {
-                    console.log(`client nodejs[port:8081]: add(${JSON.stringify(ps)})=${r}`)
+                    console.log('client nodejs[port:8081]: add(' + JSON.stringify(ps) + ')=' + r)
+                })
+                .catch(function(err) {
+                    console.log('client nodejs[port:8081]: add: catch: ', err)
                 })
             wo.minu(ps)
                 .then(function(r) {
-                    console.log(`client nodejs[port:8081]: minu(${JSON.stringify(ps)})=${r}`)
+                    console.log('client nodejs[port:8081]: minu(' + JSON.stringify(ps) + ')=' + r)
+                })
+                .catch(function(err) {
+                    console.log('client nodejs[port:8081]: minu: catch: ', err)
                 })
         }
 
