@@ -8,7 +8,7 @@ import haskey from 'wsemi/src/haskey.mjs'
 
 
 /**
- * 建立WebSocket使用者(browser)端物件
+ * 建立WebSocket使用者(Node.js)端物件
  *
  * @param {Object} opt 輸入設定參數物件
  * @param {String} [opt.url='ws://localhost:8080'] 輸入WebSocket伺服器ws網址，預設為'ws://localhost:8080'
