@@ -60,7 +60,7 @@ let opt = {
     },
 }
 
-WsServer(opt)
+new WsServer(opt)
 ```
 #### Example for `ws-client-node`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/scla.mjs)]
@@ -86,7 +86,7 @@ let opt = {
 }
 
 //WsClientNode
-WsClientNode(opt)
+new WsClientNode(opt)
     .then(function(wo) {
 
         function core(ps) {
@@ -146,7 +146,7 @@ let opt = {
 
 //WsClientWeb
 let WsClientWeb = window['ws-client-web']
-WsClientWeb(opt)
+new WsClientWeb(opt)
     .then(function(wo) {
 
         function core(ps) {
