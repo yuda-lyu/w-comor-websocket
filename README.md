@@ -25,7 +25,7 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 npm i w-comor-websocket
 ```
 #### Example for `ws-server`:
-> **Show:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/srv.mjs)]
+> **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/srv.mjs)]
 ```alias
 import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'
 
@@ -63,7 +63,7 @@ let opt = {
 WsServer(opt)
 ```
 #### Example for `ws-client-node`:
-> **Show:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/scla.mjs)]
+> **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/scla.mjs)]
 ```alias
 import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'
 
@@ -124,7 +124,7 @@ WsClientNode(opt)
 <script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.1/dist/ws-client-web.umd.js"></script>></script>
 ```
 #### Example for `ws-client-web`:
-> **Show:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
+> **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
 ```alias
 //opt
 let opt = {
