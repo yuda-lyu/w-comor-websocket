@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClientNode.mjs.html">WsClientNode.mjs</a>, <a href="WsClientNode.mjs.html#line71">line 71</a>
+        <a href="WsClientNode.mjs.html">WsClientNode.mjs</a>, <a href="WsClientNode.mjs.html#line77">line 77</a>
     </li></ul></dd>
     
 
@@ -189,7 +189,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        consoloe.log('client nodejs: open')    },    close: function() {        consoloe.log('client nodejs: close')    },    error: function(err) {        consoloe.log('client nodejs: error:', err)    },    reconn: function() {        consoloe.log('client nodejs: reconn')    },}//WsClientNodenew WsClientNode(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    consoloe.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })            wo.minu(ps)                .then(function(r) {                    consoloe.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })</code></pre>
+    <pre class="prettyprint"><code>import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientNodenew WsClientNode(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })</code></pre>
 
 
 
@@ -547,7 +547,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClientWeb.mjs.html">WsClientWeb.mjs</a>, <a href="WsClientWeb.mjs.html#line75">line 75</a>
+        <a href="WsClientWeb.mjs.html">WsClientWeb.mjs</a>, <a href="WsClientWeb.mjs.html#line81">line 81</a>
     </li></ul></dd>
     
 
@@ -600,7 +600,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>&lt;script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@latest/dist/ws-client-web.umd.js">&lt;/script>&lt;script>    //opt    let opt = {        url: 'ws://localhost:8080',        token: '*',        open: function() {            consoloe.log('client web: open')        },        close: function() {            consoloe.log('client web: close')        },        error: function(err) {            consoloe.log('client web: error:', err)        },        reconn: function() {            consoloe.log('client web: reconn')        },    }    //WsClientWeb    let WsClientWeb = window['ws-client-web']    new WsClientWeb(opt)        .then(function(wo) {            consoloe.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))            function core(ps) {                wo.add(ps)                    .then(function(r) {                        consoloe.log('client web: add('+JSON.stringify(ps)+')='+r)                    })                wo.minu(ps)                    .then(function(r) {                        consoloe.log('client web: minu('+JSON.stringify(ps)+')='+r)                    })            }            let i = 100            setInterval(function() {                i += 1                core({                    p1: i,                    p2: 10,                })            }, 1000)        })&lt;/script></code></pre>
+    <pre class="prettyprint"><code>&lt;script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@latest/dist/ws-client-web.umd.js">&lt;/script>&lt;script>    //opt    let opt = {        url: 'ws://localhost:8080',        token: '*',        open: function() {            console.log('client web: open')        },        close: function() {            console.log('client web: close')        },        error: function(err) {            console.log('client web: error:', err)        },        reconn: function() {            console.log('client web: reconn')        },    }    //WsClientWeb    let WsClientWeb = window['ws-client-web']    new WsClientWeb(opt)        .then(function(wo) {            console.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))            function core(ps) {                wo.add(ps)                    .then(function(r) {                        console.log('client web: add('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: add: catch: ', err)                    })                wo.minu(ps)                    .then(function(r) {                        console.log('client web: minu('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: minu: catch: ', err)                    })            }            let i = 100            setInterval(function() {                i += 1                core({                    p1: i,                    p2: 10,                })            }, 1000)        })&lt;/script></code></pre>
 
 
 
@@ -1241,7 +1241,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Tue Jul 02 2019 15:13:07 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Tue Jul 02 2019 17:33:25 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
