@@ -36,7 +36,7 @@ function random(min, max) {
 let opt = {
     port: 8080,
     authenticate: async function(token) { 
-        //使用token驗證使用者身份
+        //authenticate user by token
         return new Promise(function(resolve, reject) {
             setTimeout(function() {
                 resolve(true)
@@ -44,7 +44,7 @@ let opt = {
         })
     },
     filterFuncs: async function(token, funcs) {
-        //使用token驗證使用者身份與過濾可用funcs
+        //resolve funcs by authenticating user
         return new Promise(function(resolve, reject) {
             funcs = funcs.filter(function(v) {
                 return v.indexOf('Hide') < 0
