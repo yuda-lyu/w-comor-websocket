@@ -49,3 +49,6 @@ new WsClientNode(opt)
         }, 1000)
 
     })
+    .catch(function(err) {
+        console.log('client nodejs[port:8080]: catch', err)
+    })

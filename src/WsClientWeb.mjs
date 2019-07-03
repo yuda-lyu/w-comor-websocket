@@ -74,6 +74,9 @@ import haskey from 'wsemi/src/haskey.mjs'
  *             }, 1000)
  *
  *         })
+ *         .catch(function(err) {
+ *             console.log('client web: catch', err)
+ *         })
  *
  * </script>
  *

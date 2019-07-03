@@ -1,7 +1,7 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.0.3",
-  "description": "A websocket communicator in nodejs and browser.",
+  "version": "1.0.4",
+  "description": "A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.",
   "main": "dist/ws-server.umd.js",
   "dependencies": {
     "ws": "^7.0.1"
@@ -60,7 +60,8 @@
     "nodejs",
     "browser",
     "wrapper",
-    "communicator"
+    "communicator",
+    "RPC"
   ],
   "author": "yuda-lyu(semisphere)",
   "license": "MIT",

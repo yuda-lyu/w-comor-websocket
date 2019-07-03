@@ -1,4 +1,5 @@
 import WebSocket from 'ws'
+import cloneDeep from 'lodash/cloneDeep'
 import keys from 'lodash/keys'
 import genPm from 'wsemi/src/genPm.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
@@ -44,6 +45,9 @@ import arrhas from 'wsemi/src/arrhas.mjs'
  *             resolve(funcs)
  *         })
  *     },
+ *     onClientChange: function(clients, opt) {
+ *         console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)
+ *     },
  *     funcs: {
  *         add: function({ p1, p2 }) {
  *             return new Promise(function(resolve, reject) {
@@ -75,6 +79,10 @@ import arrhas from 'wsemi/src/arrhas.mjs'
 function WsServer(opt) {
 
 
+    //cloneDeep
+    opt = cloneDeep(opt)
+
+
     //default
     if (!opt.port) {
         opt.port = 8080
@@ -86,18 +94,6 @@ function WsServer(opt) {
     if (haskey(opt, 'funcs')) {
         funcs = keys(opt['funcs'])
     }
-
-
-    // //check notlist
-    // let notlist = [
-    //     'url', 'token', 'open', 'close', 'error', 'reconn', 'getFuncs', 'filterFuncs'
-    // ]
-    // each(notlist, function(v) {
-    //     let b = arrhas(funcs, v)
-    //     if (b) {
-    //         console.warn(`funcs can not include: ${v}`)
-    //     }
-    // })
 
 
     //WebSocketServer
@@ -123,7 +119,7 @@ function WsServer(opt) {
     //serverSettings
     let serverSettings = {
         port: opt.port,
-        verifyClient: async function(info, done) {
+        verifyClient: function(info, done) {
 
             //data
             let data = urlParse(info.req.url)
@@ -132,10 +128,13 @@ function WsServer(opt) {
             let token = getdtvstr(data, 'token')
 
             //vd
-            let vd = await authenticate(token)
+            authenticate(token)
+                .then(function(vd) {
 
-            //callback
-            done(vd)
+                    //callback
+                    done(vd)
+
+                })
 
         }
     }
@@ -154,14 +153,14 @@ function WsServer(opt) {
 
         //push
         clients.push(wsc)
+        if (isfun(opt.onClientChange)) {
+            opt.onClientChange(clients, opt)
+        }
 
 
-        //message
-        wsc.on('message', async function(message) {
-            //console.log('message', message)
-
-            //data
-            let data = j2o(message)
+        //execFunction
+        async function execFunction(data) {
+            console.log(`Server[port:${opt.port}]: `, data)
 
             //token
             let token = getdtvstr(data, 'token')
@@ -185,19 +184,12 @@ function WsServer(opt) {
                         funcs = await opt.filterFuncs(token, funcs)
                     }
 
-                    //send funcs
-                    if (wsc.readyState === WebSocket.OPEN) {
-                        wsc.send(JSON.stringify({ sys: 'sys', funcs: funcs }), function(err) {
-                            if (err) {
-                                console.log(`Server: send funcs error: ${err}`)
-                            }
-                        })
-                    }
+                    //data
+                    data = { sys: 'sys', funcs: funcs }
 
                 }
-
                 //call
-                if (arrhas(funcs, func)) {
+                else if (arrhas(funcs, func)) {
 
                     //call func in opt.funcs
                     let output = await opt['funcs'][func](input)
@@ -205,18 +197,43 @@ function WsServer(opt) {
                     //add output
                     data['output'] = output
 
-                    //send
-                    if (wsc.readyState === WebSocket.OPEN) {
-                        wsc.send(JSON.stringify(data), function(err) {
-                            if (err) {
-                                console.log(`Server: send output error: ${err}`)
-                            }
-                        })
-                    }
+                }
+                else {
+
+                    //add output
+                    data['output'] = { err: `can not find: ${func}` }
 
                 }
 
             }
+            else {
+
+                //add output
+                data['output'] = { err: `can not authenticate token: ${token}` }
+
+            }
+
+            //send
+            if (wsc.readyState === WebSocket.OPEN) {
+                wsc.send(JSON.stringify(data), function(err) {
+                    if (err) {
+                        console.log(`Server: send output error: ${err}`)
+                    }
+                })
+            }
+
+        }
+
+
+        //message
+        wsc.on('message', async function(message) {
+            //console.log('message', message)
+
+            //data
+            let data = j2o(message)
+
+            //execFunction
+            execFunction(data)
 
         })
 
@@ -229,18 +246,17 @@ function WsServer(opt) {
                 return wst !== wsc
             })
 
+            if (isfun(opt.onClientChange)) {
+                opt.onClientChange(clients, opt)
+            }
+
         })
 
 
     })
 
 
-    console.log(`Server running at: ws://localhost:${serverSettings.port}`)
-
-
-    setInterval(function() {
-        console.log(`Server[port:${serverSettings.port}] now clients: ${clients.length}`)
-    }, 1000)
+    console.log(`Server running at: ws://localhost:${opt.port}`)
 
 
 }

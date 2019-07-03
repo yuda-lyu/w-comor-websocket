@@ -1,5 +1,5 @@
 # w-comor-websocket
-A websocket communicator in nodejs and browser.
+A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.
 
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
@@ -127,6 +127,9 @@ new WsClientNode(opt)
         }, 1000)
 
     })
+    .catch(function(err) {
+        console.log('client nodejs: catch', err)
+    })
 ```
 
 ### In a browser(UMD module):
@@ -138,7 +141,7 @@ new WsClientNode(opt)
 ```
 [Necessary] Add script for ws-client-web.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.3/dist/ws-client-web.umd.js"></script>></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.4/dist/ws-client-web.umd.js"></script>
 ```
 #### Example for `ws-client-web`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
@@ -193,5 +196,8 @@ new WsClientWeb(opt)
             })
         }, 1000)
 
+    })
+    .catch(function(err) {
+        console.log('client web: catch', err)
     })
 ```
