@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClientNode.mjs.html">WsClientNode.mjs</a>, <a href="WsClientNode.mjs.html#line77">line 77</a>
+        <a href="WsClientNode.mjs.html">WsClientNode.mjs</a>, <a href="WsClientNode.mjs.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -189,7 +189,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientNodenew WsClientNode(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })</code></pre>
+    <pre class="prettyprint"><code>import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientNodenew WsClientNode(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client nodejs: catch', err)    })</code></pre>
 
 
 
@@ -547,7 +547,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClientWeb.mjs.html">WsClientWeb.mjs</a>, <a href="WsClientWeb.mjs.html#line81">line 81</a>
+        <a href="WsClientWeb.mjs.html">WsClientWeb.mjs</a>, <a href="WsClientWeb.mjs.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -600,7 +600,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>&lt;script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@latest/dist/ws-client-web.umd.js">&lt;/script>&lt;script>    //opt    let opt = {        url: 'ws://localhost:8080',        token: '*',        open: function() {            console.log('client web: open')        },        close: function() {            console.log('client web: close')        },        error: function(err) {            console.log('client web: error:', err)        },        reconn: function() {            console.log('client web: reconn')        },    }    //WsClientWeb    let WsClientWeb = window['ws-client-web']    new WsClientWeb(opt)        .then(function(wo) {            console.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))            function core(ps) {                wo.add(ps)                    .then(function(r) {                        console.log('client web: add('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: add: catch: ', err)                    })                wo.minu(ps)                    .then(function(r) {                        console.log('client web: minu('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: minu: catch: ', err)                    })            }            let i = 100            setInterval(function() {                i += 1                core({                    p1: i,                    p2: 10,                })            }, 1000)        })&lt;/script></code></pre>
+    <pre class="prettyprint"><code>&lt;script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@latest/dist/ws-client-web.umd.js">&lt;/script>&lt;script>    //opt    let opt = {        url: 'ws://localhost:8080',        token: '*',        open: function() {            console.log('client web: open')        },        close: function() {            console.log('client web: close')        },        error: function(err) {            console.log('client web: error:', err)        },        reconn: function() {            console.log('client web: reconn')        },    }    //WsClientWeb    let WsClientWeb = window['ws-client-web']    new WsClientWeb(opt)        .then(function(wo) {            console.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))            function core(ps) {                wo.add(ps)                    .then(function(r) {                        console.log('client web: add('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: add: catch: ', err)                    })                wo.minu(ps)                    .then(function(r) {                        console.log('client web: minu('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: minu: catch: ', err)                    })            }            let i = 100            setInterval(function() {                i += 1                core({                    p1: i,                    p2: 10,                })            }, 1000)        })        .catch(function(err) {            console.log('client web: catch', err)        })&lt;/script></code></pre>
 
 
 
@@ -958,7 +958,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsServer.mjs.html">WsServer.mjs</a>, <a href="WsServer.mjs.html#line75">line 75</a>
+        <a href="WsServer.mjs.html">WsServer.mjs</a>, <a href="WsServer.mjs.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -1011,7 +1011,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'function random(min, max) {    return Math.floor(Math.random() * max) + min}let opt = {    port: 8080,    authenticate: async function(token) {        //使用token驗證使用者身份        return new Promise(function(resolve, reject) {            setTimeout(function() {                resolve(true)            }, 1000)        })    },    filterFuncs: async function(token, funcs) {        //使用token驗證使用者身份與過濾可用funcs        return new Promise(function(resolve, reject) {            funcs = funcs.filter(function(v) {                return v.indexOf('Hide') &lt; 0            })            resolve(funcs)        })    },    funcs: {        add: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        addHide: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        minu: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 - p2)                }, random(100, 3000))            })        },    },}new WsServer(opt)</code></pre>
+    <pre class="prettyprint"><code>import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'function random(min, max) {    return Math.floor(Math.random() * max) + min}let opt = {    port: 8080,    authenticate: async function(token) {        //使用token驗證使用者身份        return new Promise(function(resolve, reject) {            setTimeout(function() {                resolve(true)            }, 1000)        })    },    filterFuncs: async function(token, funcs) {        //使用token驗證使用者身份與過濾可用funcs        return new Promise(function(resolve, reject) {            funcs = funcs.filter(function(v) {                return v.indexOf('Hide') &lt; 0            })            resolve(funcs)        })    },    onClientChange: function(clients, opt) {        console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)    },    funcs: {        add: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        addHide: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        minu: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 - p2)                }, random(100, 3000))            })        },    },}new WsServer(opt)</code></pre>
 
 
 
@@ -1241,7 +1241,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Tue Jul 02 2019 17:33:25 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Wed Jul 03 2019 16:55:24 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
