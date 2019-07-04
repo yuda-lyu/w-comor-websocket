@@ -1,5 +1,5 @@
 # w-comor-websocket
-A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.
+A websocket communicator in nodejs and browser. Mapping functions from nodejs to other end points, like a simple RPC.
 
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 

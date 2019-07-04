@@ -3,7 +3,6 @@ import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
-import haskey from 'wsemi/src/haskey.mjs'
 
 
 /**
