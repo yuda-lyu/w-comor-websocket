@@ -185,7 +185,7 @@ function WsServer(opt) {
                     }
 
                     //data
-                    data = { sys: 'sys', funcs: funcs }
+                    data = { output: { sys: 'sys', funcs: funcs } }
 
                 }
                 //call
@@ -245,7 +245,6 @@ function WsServer(opt) {
             clients = clients.filter(function(wst) {
                 return wst !== wsc
             })
-
             if (isfun(opt.onClientChange)) {
                 opt.onClientChange(clients, opt)
             }

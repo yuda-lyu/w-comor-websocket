@@ -170,10 +170,10 @@ function WsClientWeb(opt) {
             let data = j2o(message)
 
             //get sys funcs
-            if (get(data, 'sys') === 'sys' && haskey(data, 'funcs')) {
+            if (get(data, 'output.sys') === 'sys' && get(data, 'output.funcs')) {
 
                 //funcs
-                let funcs = data['funcs']
+                let funcs = data['output']['funcs']
 
                 //clear wo
                 wo = {}
@@ -197,7 +197,7 @@ function WsClientWeb(opt) {
             }
 
             //get result
-            if (get(data, '_id')) {
+            if (get(data, '_id') && get(data, 'output')) {
                 msgs[data._id] = data
             }
 
@@ -206,6 +206,9 @@ function WsClientWeb(opt) {
 
         //close, 瀏覽器端為onclose
         wsc.onclose = function () {
+            if (isfun(opt.close)) {
+                opt.close()
+            }
             reconn()
         }
 

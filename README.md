@@ -14,8 +14,8 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 
 ## Parts
 `w-comor-websocket` includes 3 parts: 
-* `ws-server`: for node server
-* `ws-client-node`: for node client
+* `ws-server`: for nodejs server
+* `ws-client-node`: for nodejs client
 * `ws-client-web`: for browser client
 
 ## Installation
@@ -51,6 +51,9 @@ let opt = {
             })
             resolve(funcs)
         })
+    },
+    onClientChange: function(clients, opt) {
+        console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)
     },
     funcs: {
         add: function({ p1, p2 }) {
@@ -141,7 +144,7 @@ new WsClientNode(opt)
 ```
 [Necessary] Add script for ws-client-web.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.4/dist/ws-client-web.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.5/dist/ws-client-web.umd.js"></script>
 ```
 #### Example for `ws-client-web`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]

@@ -164,10 +164,10 @@ function WsClientNode(opt) {
             let data = j2o(message)
 
             //get sys funcs
-            if (get(data, 'sys') === 'sys' && haskey(data, 'funcs')) {
+            if (get(data, 'output.sys') === 'sys' && get(data, 'output.funcs')) {
 
                 //funcs
-                let funcs = data['funcs']
+                let funcs = data['output']['funcs']
 
                 //clear wo
                 wo = {}
@@ -191,7 +191,7 @@ function WsClientNode(opt) {
             }
 
             //get result
-            if (get(data, '_id')) {
+            if (get(data, '_id') && get(data, 'output')) {
                 msgs[data._id] = data
             }
 
@@ -200,6 +200,9 @@ function WsClientNode(opt) {
 
         //close
         wsc.on('close', function () {
+            if (isfun(opt.close)) {
+                opt.close()
+            }
             reconn()
         })
 
