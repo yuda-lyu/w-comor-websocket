@@ -30,7 +30,7 @@ npm i w-comor-websocket
 import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'
 
 function random(min, max) {
-    return Math.floor(Math.random()max) + min
+    return Math.floor(Math.random() * max) + min
 }
 
 let opt = {
