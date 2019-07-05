@@ -1,4 +1,4 @@
-import WebSocket from 'ws'
+import WS from 'ws'
 import get from 'lodash/get'
 import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
@@ -19,7 +19,7 @@ import isfun from 'wsemi/src/isfun.mjs'
  * @returns {Promise} 回傳Promise，resolve為映射伺服器端可用函數之物件，各函數輸入皆為單一物件，各函數回傳皆為Promise，用resolve與reject處理回傳結果
  * @example
  *
- * import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'
+ * import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'
  *
  * //opt
  * let opt = {
@@ -39,8 +39,8 @@ import isfun from 'wsemi/src/isfun.mjs'
  *     },
  * }
  *
- * //WsClientNode
- * new WsClientNode(opt)
+ * //WsClient
+ * new WsClient(opt)
  *     .then(function(wo) {
  *         console.log('client nodejs: funcs: ', wo)
  *
@@ -76,7 +76,7 @@ import isfun from 'wsemi/src/isfun.mjs'
  *     })
  *
  */
-function WsClientNode(opt) {
+function WsClient(opt) {
     let pm = genPm()
     let msgs = {} //訊息佇列
     let wsc = null //WebSocket
@@ -95,23 +95,55 @@ function WsClientNode(opt) {
         }
 
 
+        //inBrowser
+        let inBrowser = typeof window !== 'undefined'
+        //console.log('inBrowser', inBrowser)
+
+
+        //MixWS
+        let MixWS
+        if (inBrowser) {
+            MixWS = window.WebSocket //use browser websocket
+        }
+        else {
+            MixWS = WS //use nodejs ws
+        }
+
+
         //WebSocket, 網址傳token參數作為識別使用者
         try {
-            wsc = new WebSocket(opt.url + '?' + 'token=' + opt.token)
+            wsc = new MixWS(opt.url + '?' + 'token=' + opt.token)
         }
         catch (err) {
             reconn()
-            return
         }
 
 
-        //open
-        wsc.on('open', function () {
+        //bind
+        if (inBrowser) {
+            wsc.onopen = fOpen
+            wsc.onmessage = function(ev) {
+                let message = ev.data //瀏覽器端會被包至data
+                fMessage(message)
+            }
+            wsc.onclose = fClose
+            wsc.onerror = fError
+        }
+        else {
+            wsc.on('open', fOpen)
+            wsc.on('message', fMessage)
+            wsc.on('close', fClose)
+            wsc.on('error', fError)
+        }
+
+
+        //fOpen
+        function fOpen() {
             if (isfun(opt.open)) {
                 opt.open()
             }
             execFunction('getFuncs', null)
-        })
+        }
 
 
         //execFunction
@@ -133,7 +165,7 @@ function WsClientNode(opt) {
             msgs[_id] = null
 
             //send
-            if (wsc.readyState === WebSocket.OPEN) {
+            if (wsc.readyState === MixWS.OPEN) {
                 wsc.send(JSON.stringify(msg), function(err) {
                     if (err) {
                         if (isfun(opt.error)) {
@@ -156,8 +188,9 @@ function WsClientNode(opt) {
             return pmm
         }
 
-        //message
-        wsc.on('message', function (message) {
+
+        //fMessage
+        function fMessage(message) {
 
             //data
             let data = j2o(message)
@@ -194,25 +227,25 @@ function WsClientNode(opt) {
                 msgs[data._id] = data
             }
 
-        })
+        }
 
 
-        //close
-        wsc.on('close', function () {
+        //fClose
+        function fClose() {
             if (isfun(opt.close)) {
                 opt.close()
             }
             reconn()
-        })
+        }
 
 
-        //error
-        wsc.on('error', function (err) {
+        //fError
+        function fError(err) {
             if (isfun(opt.error)) {
                 opt.error(err)
             }
             wsc.close()
-        })
+        }
 
 
     }
@@ -236,4 +269,4 @@ function WsClientNode(opt) {
 }
 
 
-export default WsClientNode
+export default WsClient

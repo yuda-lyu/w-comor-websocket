@@ -13,14 +13,13 @@ A websocket communicator in nodejs and browser. Mapping functions from nodejs to
 To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-comor-websocket/global.html).
 
 ## Parts
-`w-comor-websocket` includes 3 parts: 
+`w-comor-websocket` includes 2 parts: 
 * `ws-server`: for nodejs server
-* `ws-client-node`: for nodejs client
-* `ws-client-web`: for browser client
+* `ws-client`: for nodejs and browser client
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** `ws-server` and `ws-client-node` depends on `ws`
+> **Note:** `ws-server` and `ws-client` depends on `ws`
 ```alias
 npm i w-comor-websocket
 ```
@@ -75,10 +74,10 @@ let opt = {
 
 new WsServer(opt)
 ```
-#### Example for `ws-client-node`:
+#### Example for `ws-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/scla.mjs)]
 ```alias
-import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'
+import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'
 
 //opt
 let opt = {
@@ -98,8 +97,8 @@ let opt = {
     },
 }
 
-//WsClientNode
-new WsClientNode(opt)
+//WsClient
+new WsClient(opt)
     .then(function(wo) {
         console.log('client nodejs: funcs: ', wo)
         
@@ -136,17 +135,17 @@ new WsClientNode(opt)
 ```
 
 ### In a browser(UMD module):
-> **Note:** `ws-client-web` does't depend on any package.
+> **Note:** `ws-client` does't depend on any package in browser.
 
 [Optional] Add script with nomodule for IE11.
 ```alias
 <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
 ```
-[Necessary] Add script for ws-client-web.
+[Necessary] Add script for ws-client.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.5/dist/ws-client-web.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.6/dist/ws-client.umd.js"></script>
 ```
-#### Example for `ws-client-web`:
+#### Example for `ws-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
 ```alias
 //opt
@@ -167,9 +166,9 @@ let opt = {
     },
 }
 
-//WsClientWeb
-let WsClientWeb = window['ws-client-web']
-new WsClientWeb(opt)
+//WsClient
+let WsClient = window['ws-client']
+new WsClient(opt)
     .then(function(wo) {
         console.log('client web: funcs: ', wo)
         

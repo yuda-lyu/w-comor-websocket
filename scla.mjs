@@ -1,5 +1,5 @@
-//import WsClientNode from './src/WsClientNode.mjs'
-import WsClientNode from './dist/ws-client-node.umd.js'
+import WsClient from './src/WsClient.mjs'
+//import WsClient from './dist/ws-client.umd.js'
 
 let opt = {
     url: 'ws://localhost:8080',
@@ -18,7 +18,7 @@ let opt = {
     },
 }
 
-new WsClientNode(opt)
+new WsClient(opt)
     .then(function(wo) {
         console.log('client nodejs[port:8080]: funcs: ', wo)
 

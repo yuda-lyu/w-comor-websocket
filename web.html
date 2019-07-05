@@ -9,7 +9,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/wsemi/dist/wsemi.umd.js"></script>
         
-        <script src="dist/ws-client-web.umd.js"></script>
+        <script src="dist/ws-client.umd.js"></script>
 
         <script>
 
@@ -31,9 +31,9 @@
                 },
             }
 
-            //WsClientWeb
-            let WsClientWeb = window['ws-client-web']
-            new WsClientWeb(opt)
+            //WsClient
+            let WsClient = window['ws-client']
+            new WsClient(opt)
                 .then(function(wo) {
                     wsemi.bodyLog('client web: funcs: '+JSON.stringify(Object.keys(wo)))
 

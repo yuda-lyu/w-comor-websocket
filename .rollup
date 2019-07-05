@@ -50,7 +50,7 @@ let optPlugins = [
 
 let fd_src = 'src/'
 let fd_tar = 'dist/'
-let cps = ["WsClientNode","WsClientWeb","WsServer"]
+let cps = ["WsClient","WsServer"]
 
 
 let rs = _.map(cps, function(v) {
