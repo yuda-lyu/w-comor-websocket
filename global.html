@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#WsClientNode">WsClientNode</a></li><li><a href="global.html#WsClientWeb">WsClientWeb</a></li><li><a href="global.html#WsServer">WsServer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#WsClient">WsClient</a></li><li><a href="global.html#WsServer">WsServer</a></li></ul>
 </nav>
 
 <div id="main">
@@ -124,7 +124,7 @@
 
     
 
-    <h4 class="name" id="WsClientNode"><span class="type-signature"></span>WsClientNode<span class="signature">(opt)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="WsClient"><span class="type-signature"></span>WsClient<span class="signature">(opt)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClientNode.mjs.html">WsClientNode.mjs</a>, <a href="WsClientNode.mjs.html#line80">line 80</a>
+        <a href="WsClient.mjs.html">WsClient.mjs</a>, <a href="WsClient.mjs.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -189,418 +189,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsClientNode from 'w-comor-websocket/dist/ws-client-node.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientNodenew WsClientNode(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client nodejs: catch', err)    })</code></pre>
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>輸入設定參數物件</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>url</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>'ws://localhost:8080'</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>輸入WebSocket伺服器ws網址，預設為'ws://localhost:8080'</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>'*'</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>輸入使用者認證用token，預設為'*'</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>open</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>輸入監聽open函數</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>close</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>輸入監聽close函數</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>error</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>輸入監聽error函數</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>reconn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>輸入監聽reconn函數</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>回傳Promise，resolve為映射伺服器端可用函數之物件，各函數輸入皆為單一物件，各函數回傳皆為Promise，用resolve與reject處理回傳結果</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="WsClientWeb"><span class="type-signature"></span>WsClientWeb<span class="signature">(opt)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClientWeb.mjs.html">WsClientWeb.mjs</a>, <a href="WsClientWeb.mjs.html#line84">line 84</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>建立WebSocket使用者(Browser)端物件</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>&lt;script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@latest/dist/ws-client-web.umd.js">&lt;/script>&lt;script>    //opt    let opt = {        url: 'ws://localhost:8080',        token: '*',        open: function() {            console.log('client web: open')        },        close: function() {            console.log('client web: close')        },        error: function(err) {            console.log('client web: error:', err)        },        reconn: function() {            console.log('client web: reconn')        },    }    //WsClientWeb    let WsClientWeb = window['ws-client-web']    new WsClientWeb(opt)        .then(function(wo) {            console.log('client web: funcs: '+JSON.stringify(Object.keys(wo)))            function core(ps) {                wo.add(ps)                    .then(function(r) {                        console.log('client web: add('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: add: catch: ', err)                    })                wo.minu(ps)                    .then(function(r) {                        console.log('client web: minu('+JSON.stringify(ps)+')='+r)                    })                    .catch(function(err) {                        console.log('client web: minu: catch: ', err)                    })            }            let i = 100            setInterval(function() {                i += 1                core({                    p1: i,                    p2: 10,                })            }, 1000)        })        .catch(function(err) {            console.log('client web: catch', err)        })&lt;/script></code></pre>
+    <pre class="prettyprint"><code>import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientnew WsClient(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client nodejs: catch', err)    })</code></pre>
 
 
 
@@ -1241,7 +830,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Thu Jul 04 2019 12:28:23 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Fri Jul 05 2019 16:09:35 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
