@@ -1,10 +1,10 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.",
   "main": "dist/ws-server.umd.js",
   "dependencies": {
-    "w-websocket-client": "^1.0.1",
+    "w-websocket-client": "^1.0.2",
     "ws": "^7.1.0"
   },
   "devDependencies": {
@@ -44,7 +44,7 @@
     "rollup-plugin-vue": "^5.0.0",
     "rollup-plugin-vue-template-compiler": "^1.0.3",
     "vue-template-compiler": "^2.6.10",
-    "wsemi": "^1.1.14"
+    "wsemi": "^1.1.15"
   },
   "scripts": {
     "test": "mocha --require @babel/register",
