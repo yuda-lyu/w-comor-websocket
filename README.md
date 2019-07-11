@@ -19,7 +19,7 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** `ws-server` and `ws-client` depends on `ws`
+> **Note:** `ws-server` depends on `ws`, `ws-client` depends on `ws` and `w-websocket-client`
 ```alias
 npm i w-comor-websocket
 ```
@@ -143,7 +143,7 @@ new WsClient(opt)
 ```
 [Necessary] Add script for ws-client.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.6/dist/ws-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.7/dist/ws-client.umd.js"></script>
 ```
 #### Example for `ws-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]

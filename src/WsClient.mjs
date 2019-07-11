@@ -1,4 +1,4 @@
-import WS from 'ws'
+import WSC from 'w-websocket-client/src/WWebsocketClient.mjs'
 import get from 'lodash/get'
 import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
@@ -86,54 +86,40 @@ function WsClient(opt) {
     function core() {
 
 
+        //optt
+        let optt = {
+            url: null,
+            token: null,
+            open: function() {
+                fOpen()
+            },
+            close: function() {
+                fClose()
+            },
+            message: function(data) {
+                fMessage(data)
+            },
+            error: function(err) {
+                fError(err)
+            },
+        }
+
+
         //default
         if (!opt.url) {
-            opt.url = 'ws://localhost:8080'
+            optt.url = 'ws://localhost:8080'
         }
         if (!opt.token) {
-            opt.token = '*'
-        }
-
-
-        //inBrowser
-        let inBrowser = typeof window !== 'undefined'
-        //console.log('inBrowser', inBrowser)
-
-
-        //MixWS
-        let MixWS
-        if (inBrowser) {
-            MixWS = window.WebSocket //use browser websocket
-        }
-        else {
-            MixWS = WS //use nodejs ws
+            optt.token = '*'
         }
 
 
         //WebSocket, 網址傳token參數作為識別使用者
         try {
-            wsc = new MixWS(opt.url + '?' + 'token=' + opt.token)
+            wsc = new WSC(optt)
         }
         catch (err) {
             reconn()
-        }
-
-
-        //bind
-        if (inBrowser) {
-            wsc.onopen = fOpen
-            wsc.onmessage = function(ev) {
-                let message = ev.data //瀏覽器端會被包至data
-                fMessage(message)
-            }
-            wsc.onclose = fClose
-            wsc.onerror = fError
-        }
-        else {
-            wsc.on('open', fOpen)
-            wsc.on('message', fMessage)
-            wsc.on('close', fClose)
-            wsc.on('error', fError)
         }
 
 
@@ -165,7 +151,7 @@ function WsClient(opt) {
             msgs[_id] = null
 
             //send
-            if (wsc.readyState === MixWS.OPEN) {
+            if (wsc.readyState === wsc.OPEN) {
                 wsc.send(JSON.stringify(msg), function(err) {
                     if (err) {
                         if (isfun(opt.error)) {
