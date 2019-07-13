@@ -1,5 +1,6 @@
 import WSC from 'w-websocket-client/src/WWebsocketClient.mjs'
 import get from 'lodash/get'
+import set from 'lodash/set'
 import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
@@ -45,6 +46,20 @@ import isfun from 'wsemi/src/isfun.mjs'
  *         console.log('client nodejs: funcs: ', wo)
  *
  *         function core(ps) {
+ *             wo.group.plus(ps)
+ *                 .then(function(r) {
+ *                     console.log('client nodejs: plus(' + JSON.stringify(ps) + ')=' + r)
+ *                 })
+ *                 .catch(function(err) {
+ *                     console.log('client nodejs: plus: catch: ', err)
+ *                 })
+ *             wo.group.div(ps)
+ *                 .then(function(r) {
+ *                     console.log('client nodejs: div(' + JSON.stringify(ps) + ')=' + r)
+ *                 })
+ *                 .catch(function(err) {
+ *                     console.log('client nodejs: div: catch: ', err)
+ *                 })
  *             wo.add(ps)
  *                 .then(function(r) {
  *                     console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)
@@ -197,9 +212,10 @@ function WsClient(opt) {
                     let func = funcs[i]
 
                     //add func
-                    wo[func] = async function(input) {
+                    let f = async function(input) {
                         return execFunction(func, input)
                     }
+                    set(wo, func, f)
 
                 }
 

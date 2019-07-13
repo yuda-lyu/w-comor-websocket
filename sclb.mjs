@@ -1,5 +1,5 @@
-//import WsClient from './src/WsClient.mjs'
-import WsClient from './dist/ws-client.umd.js'
+import WsClient from './src/WsClient.mjs'
+//import WsClient from './dist/ws-client.umd.js'
 
 let opt = {
     url: 'ws://localhost:8081',
@@ -23,6 +23,20 @@ new WsClient(opt)
         console.log('client nodejs[port:8081]: funcs: ', wo)
 
         function core(ps) {
+            wo.group.plus(ps)
+                .then(function(r) {
+                    console.log('client nodejs[port:8080]: plus(' + JSON.stringify(ps) + ')=' + r)
+                })
+                .catch(function(err) {
+                    console.log('client nodejs[port:8080]: plus: catch: ', err)
+                })
+            wo.group.div(ps)
+                .then(function(r) {
+                    console.log('client nodejs[port:8080]: div(' + JSON.stringify(ps) + ')=' + r)
+                })
+                .catch(function(err) {
+                    console.log('client nodejs[port:8080]: div: catch: ', err)
+                })
             wo.add(ps)
                 .then(function(r) {
                     console.log('client nodejs[port:8081]: add(' + JSON.stringify(ps) + ')=' + r)

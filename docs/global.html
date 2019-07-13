@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClient.mjs.html">WsClient.mjs</a>, <a href="WsClient.mjs.html#line79">line 79</a>
+        <a href="WsClient.mjs.html">WsClient.mjs</a>, <a href="WsClient.mjs.html#line94">line 94</a>
     </li></ul></dd>
     
 
@@ -189,7 +189,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientnew WsClient(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client nodejs: catch', err)    })</code></pre>
+    <pre class="prettyprint"><code>import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientnew WsClient(opt)    .then(function(wo) {        console.log('client nodejs: funcs: ', wo)        function core(ps) {            wo.group.plus(ps)                .then(function(r) {                    console.log('client nodejs: plus(' + JSON.stringify(ps) + ')=' + r)                })                .catch(function(err) {                    console.log('client nodejs: plus: catch: ', err)                })            wo.group.div(ps)                .then(function(r) {                    console.log('client nodejs: div(' + JSON.stringify(ps) + ')=' + r)                })                .catch(function(err) {                    console.log('client nodejs: div: catch: ', err)                })            wo.add(ps)                .then(function(r) {                    console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client nodejs: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client nodejs: catch', err)    })</code></pre>
 
 
 
@@ -547,7 +547,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsServer.mjs.html">WsServer.mjs</a>, <a href="WsServer.mjs.html#line79">line 79</a>
+        <a href="WsServer.mjs.html">WsServer.mjs</a>, <a href="WsServer.mjs.html#line93">line 93</a>
     </li></ul></dd>
     
 
@@ -600,7 +600,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'function random(min, max) {    return Math.floor(Math.random() * max) + min}let opt = {    port: 8080,    authenticate: async function(token) {        //使用token驗證使用者身份        return new Promise(function(resolve, reject) {            setTimeout(function() {                resolve(true)            }, 1000)        })    },    filterFuncs: async function(token, funcs) {        //使用token驗證使用者身份與過濾可用funcs        return new Promise(function(resolve, reject) {            funcs = funcs.filter(function(v) {                return v.indexOf('Hide') &lt; 0            })            resolve(funcs)        })    },    onClientChange: function(clients, opt) {        console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)    },    funcs: {        add: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        addHide: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        minu: function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 - p2)                }, random(100, 3000))            })        },    },}new WsServer(opt)</code></pre>
+    <pre class="prettyprint"><code>import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'function random(min, max) {    return Math.floor(Math.random() * max) + min}let opt = {    port: 8080,    authenticate: async function(token) {        //使用token驗證使用者身份        return new Promise(function(resolve, reject) {            setTimeout(function() {                resolve(true)            }, 1000)        })    },    filterFuncs: async function(token, funcs) {        //使用token驗證使用者身份與過濾可用funcs        return new Promise(function(resolve, reject) {            funcs = funcs.filter(function(v) {                return v.indexOf('Hide') &lt; 0            })            resolve(funcs)        })    },    onClientChange: function(clients, opt) {        console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)    },    funcs: {        'group.plus': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 * p2)                }, random(100, 3000))            })        },        'group.div': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 / p2)                }, random(100, 3000))            })        },        'add': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        'addHide': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        'minu': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 - p2)                }, random(100, 3000))            })        },    },}new WsServer(opt)</code></pre>
 
 
 
@@ -830,7 +830,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Thu Jul 11 2019 14:44:30 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> on Sat Jul 13 2019 11:15:02 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

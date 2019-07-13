@@ -1,5 +1,5 @@
-//import WsServer from './src/WsServer.mjs'
-import WsServer from './dist/ws-server.umd.js'
+import WsServer from './src/WsServer.mjs'
+//import WsServer from './dist/ws-server.umd.js'
 
 function random(min, max) {
     return Math.floor(Math.random() * max) + min
@@ -28,21 +28,35 @@ let opt = {
         console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)
     },
     funcs: {
-        add: function({ p1, p2 }) {
+        'group.plus': function({ p1, p2 }) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    resolve(p1 * p2)
+                }, random(100, 3000))
+            })
+        },
+        'group.div': function({ p1, p2 }) {
+            return new Promise(function(resolve, reject) {
+                setTimeout(function() {
+                    resolve(p1 / p2)
+                }, random(100, 3000))
+            })
+        },
+        'add': function({ p1, p2 }) {
             return new Promise(function(resolve, reject) {
                 setTimeout(function() {
                     resolve(p1 + p2)
                 }, random(100, 3000))
             })
         },
-        addHide: function({ p1, p2 }) {
+        'addHide': function({ p1, p2 }) {
             return new Promise(function(resolve, reject) {
                 setTimeout(function() {
                     resolve(p1 + p2)
                 }, random(100, 3000))
             })
         },
-        minu: function({ p1, p2 }) {
+        'minu': function({ p1, p2 }) {
             return new Promise(function(resolve, reject) {
                 setTimeout(function() {
                     resolve(p1 - p2)
