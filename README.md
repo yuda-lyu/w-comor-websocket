@@ -249,6 +249,6 @@ new WsClient(opt)
 
     })
     .catch(function(err) {
-        console.log('client web: catch', err)
+        console.log('client web: catch: ', err)
     })
 ```

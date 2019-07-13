@@ -43,36 +43,36 @@ import isfun from 'wsemi/src/isfun.mjs'
  * //WsClient
  * new WsClient(opt)
  *     .then(function(wo) {
- *         console.log('client nodejs: funcs: ', wo)
+ *         console.log('client: funcs: ', wo)
  *
  *         function core(ps) {
  *             wo.group.plus(ps)
  *                 .then(function(r) {
- *                     console.log('client nodejs: plus(' + JSON.stringify(ps) + ')=' + r)
+ *                     console.log('client: plus(' + JSON.stringify(ps) + ')=' + r)
  *                 })
  *                 .catch(function(err) {
- *                     console.log('client nodejs: plus: catch: ', err)
+ *                     console.log('client: plus: catch: ', err)
  *                 })
  *             wo.group.div(ps)
  *                 .then(function(r) {
- *                     console.log('client nodejs: div(' + JSON.stringify(ps) + ')=' + r)
+ *                     console.log('client: div(' + JSON.stringify(ps) + ')=' + r)
  *                 })
  *                 .catch(function(err) {
- *                     console.log('client nodejs: div: catch: ', err)
+ *                     console.log('client: div: catch: ', err)
  *                 })
  *             wo.add(ps)
  *                 .then(function(r) {
- *                     console.log(`client nodejs: add(${JSON.stringify(ps)})=${r}`)
+ *                     console.log(`client: add(${JSON.stringify(ps)})=${r}`)
  *                 })
  *                 .catch(function(err) {
- *                     console.log('client nodejs: add: catch: ', err)
+ *                     console.log('client: add: catch: ', err)
  *                 })
  *             wo.minu(ps)
  *                 .then(function(r) {
- *                     console.log(`client nodejs: minu(${JSON.stringify(ps)})=${r}`)
+ *                     console.log(`client: minu(${JSON.stringify(ps)})=${r}`)
  *                 })
  *                 .catch(function(err) {
- *                     console.log('client nodejs: minu: catch: ', err)
+ *                     console.log('client: minu: catch: ', err)
  *                 })
  *         }
  *
@@ -87,7 +87,7 @@ import isfun from 'wsemi/src/isfun.mjs'
  *
  *     })
  *     .catch(function(err) {
- *         console.log('client nodejs: catch', err)
+ *         console.log('client: catch', err)
  *     })
  *
  */

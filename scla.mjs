@@ -64,5 +64,5 @@ new WsClient(opt)
 
     })
     .catch(function(err) {
-        console.log('client nodejs[port:8080]: catch', err)
+        console.log('client nodejs[port:8080]: catch: ', err)
     })
