@@ -240,7 +240,7 @@ function WsServer(opt) {
 
 
         //message
-        wsc.on('message', async function(message) {
+        wsc.on('message', function(message) {
             //console.log('message', message)
 
             //data
