@@ -174,7 +174,7 @@ function WsServer(opt) {
 
         //execFunction
         async function execFunction(data) {
-            console.log(`Server[port:${opt.port}]: `, data)
+            //console.log(`Server[port:${opt.port}]: `, data)
 
             //token
             let token = getdtvstr(data, 'token')
