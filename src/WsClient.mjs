@@ -212,7 +212,7 @@ function WsClient(opt) {
                     let func = funcs[i]
 
                     //add func
-                    let f = async function(input) {
+                    let f = function(input) {
                         return execFunction(func, input)
                     }
                     set(wo, func, f)

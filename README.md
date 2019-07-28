@@ -34,7 +34,7 @@ function random(min, max) {
 
 let opt = {
     port: 8080,
-    authenticate: async function(token) { 
+    authenticate: function(token) { 
         //authenticate user by token
         return new Promise(function(resolve, reject) {
             setTimeout(function() {
@@ -42,7 +42,7 @@ let opt = {
             }, 1000)
         })
     },
-    filterFuncs: async function(token, funcs) {
+    filterFuncs: function(token, funcs) {
         //resolve funcs by authenticating user
         return new Promise(function(resolve, reject) {
             funcs = funcs.filter(function(v) {
@@ -178,7 +178,7 @@ new WsClient(opt)
 ```
 [Necessary] Add script for ws-client.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.10/dist/ws-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.11/dist/ws-client.umd.js"></script>
 ```
 #### Example for `ws-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
