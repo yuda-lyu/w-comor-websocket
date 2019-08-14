@@ -198,8 +198,8 @@ function WsServer(opt) {
                         funcs = await opt.filterFuncs(token, funcs)
                     }
 
-                    //data
-                    data = { output: { sys: 'sys', funcs: funcs } }
+                    //add output
+                    data['output'] = { sys: 'sys', funcs: funcs }
 
                 }
                 //call
@@ -226,6 +226,9 @@ function WsServer(opt) {
                 data['output'] = { err: `can not authenticate token: ${token}` }
 
             }
+
+            //delete input, 因input可能很大故回傳數據不包含原input
+            delete data['input']
 
             //send
             if (wsc.readyState === WebSocket.OPEN) {
