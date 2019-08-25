@@ -139,8 +139,16 @@ function WsClient(opt) {
         }
         catch (err) {
             reconn()
+            return
         }
 
+
+        //check
+        if (get(wsc, 'error')) {
+            reconn()
+            return
+        }
+        
 
         //fOpen
         function fOpen() {
