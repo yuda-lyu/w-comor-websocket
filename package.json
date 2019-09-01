@@ -1,6 +1,6 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.",
   "main": "dist/ws-server.umd.js",
   "dependencies": {
@@ -48,7 +48,7 @@
     "wsemi": "^1.2.25"
   },
   "scripts": {
-    "test": "mocha --require @babel/register",
+    "test": "./node_modules/.bin/mocha --require @babel/register",
     "deploy": "gh-pages -d docs"
   },
   "repository": {
