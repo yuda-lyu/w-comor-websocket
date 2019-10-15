@@ -139,14 +139,14 @@ function WsClient(opt) {
         }
         catch (err) {
             reconn()
-            return
+            return null
         }
 
 
         //check
         if (get(wsc, 'error')) {
             reconn()
-            return
+            return null
         }
         
 
