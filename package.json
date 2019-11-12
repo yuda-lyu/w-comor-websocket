@@ -1,6 +1,6 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.",
   "main": "dist/ws-server.umd.js",
   "dependencies": {

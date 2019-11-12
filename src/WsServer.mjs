@@ -1,5 +1,4 @@
 import WebSocket from 'ws'
-import cloneDeep from 'lodash/cloneDeep'
 import keys from 'lodash/keys'
 import genPm from 'wsemi/src/genPm.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
@@ -91,10 +90,6 @@ import arrhas from 'wsemi/src/arrhas.mjs'
  *
  */
 function WsServer(opt) {
-
-
-    //cloneDeep
-    opt = cloneDeep(opt)
 
 
     //default
