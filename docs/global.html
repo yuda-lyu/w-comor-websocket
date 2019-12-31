@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#WsClient">WsClient</a></li><li><a href="global.html#WsServer">WsServer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#WComorWebsocketClient">WComorWebsocketClient</a></li><li><a href="global.html#WComorWebsocketServer">WComorWebsocketServer</a></li></ul>
 </nav>
 
 <div id="main">
@@ -124,7 +124,7 @@
 
     
 
-    <h4 class="name" id="WsClient"><span class="type-signature"></span>WsClient<span class="signature">(opt)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="WComorWebsocketClient"><span class="type-signature"></span>WComorWebsocketClient<span class="signature">(opt)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsClient.mjs.html">WsClient.mjs</a>, <a href="WsClient.mjs.html#line95">line 95</a>
+        <a href="WComorWebsocketClient.mjs.html">WComorWebsocketClient.mjs</a>, <a href="WComorWebsocketClient.mjs.html#line95">line 95</a>
     </li></ul></dd>
     
 
@@ -189,7 +189,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WsClientnew WsClient(opt)    .then(function(wo) {        console.log('client: funcs: ', wo)        function core(ps) {            wo.group.plus(ps)                .then(function(r) {                    console.log('client: plus(' + JSON.stringify(ps) + ')=' + r)                })                .catch(function(err) {                    console.log('client: plus: catch: ', err)                })            wo.group.div(ps)                .then(function(r) {                    console.log('client: div(' + JSON.stringify(ps) + ')=' + r)                })                .catch(function(err) {                    console.log('client: div: catch: ', err)                })            wo.add(ps)                .then(function(r) {                    console.log(`client: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client: catch', err)    })</code></pre>
+    <pre class="prettyprint"><code>import WComorWebsocketClient from 'w-comor-websocket/dist/w-comor-websocket-client.umd.js'//optlet opt = {    url: 'ws://localhost:8080',    token: '*',    open: function() {        console.log('client nodejs: open')    },    close: function() {        console.log('client nodejs: close')    },    error: function(err) {        console.log('client nodejs: error:', err)    },    reconn: function() {        console.log('client nodejs: reconn')    },}//WComorWebsocketClientnew WComorWebsocketClient(opt)    .then(function(wo) {        console.log('client: funcs: ', wo)        function core(ps) {            wo.group.plus(ps)                .then(function(r) {                    console.log('client: plus(' + JSON.stringify(ps) + ')=' + r)                })                .catch(function(err) {                    console.log('client: plus: catch: ', err)                })            wo.group.div(ps)                .then(function(r) {                    console.log('client: div(' + JSON.stringify(ps) + ')=' + r)                })                .catch(function(err) {                    console.log('client: div: catch: ', err)                })            wo.add(ps)                .then(function(r) {                    console.log(`client: add(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client: add: catch: ', err)                })            wo.minu(ps)                .then(function(r) {                    console.log(`client: minu(${JSON.stringify(ps)})=${r}`)                })                .catch(function(err) {                    console.log('client: minu: catch: ', err)                })        }        let i = 100        setInterval(function() {            i += 1            core({                p1: i,                p2: 10,            })        }, 1000)    })    .catch(function(err) {        console.log('client: catch', err)    })</code></pre>
 
 
 
@@ -535,7 +535,7 @@
 
     
 
-    <h4 class="name" id="WsServer"><span class="type-signature"></span>WsServer<span class="signature">(opt)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="WComorWebsocketServer"><span class="type-signature"></span>WComorWebsocketServer<span class="signature">(opt)</span><span class="type-signature"></span></h4>
 
     
 
@@ -547,7 +547,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="WsServer.mjs.html">WsServer.mjs</a>, <a href="WsServer.mjs.html#line92">line 92</a>
+        <a href="WComorWebsocketServer.mjs.html">WComorWebsocketServer.mjs</a>, <a href="WComorWebsocketServer.mjs.html#line91">line 91</a>
     </li></ul></dd>
     
 
@@ -600,7 +600,7 @@
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'function random(min, max) {    return Math.floor(Math.random() * max) + min}let opt = {    port: 8080,    authenticate: function(token) {        //使用token驗證使用者身份        return new Promise(function(resolve, reject) {            setTimeout(function() {                resolve(true)            }, 1000)        })    },    filterFuncs: function(token, funcs) {        //使用token驗證使用者身份與過濾可用funcs        return new Promise(function(resolve, reject) {            funcs = funcs.filter(function(v) {                return v.indexOf('Hide') &lt; 0            })            resolve(funcs)        })    },    onClientChange: function(clients, opt) {        console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)    },    funcs: {        'group.plus': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 * p2)                }, random(100, 3000))            })        },        'group.div': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 / p2)                }, random(100, 3000))            })        },        'add': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        'addHide': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        'minu': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 - p2)                }, random(100, 3000))            })        },    },}new WsServer(opt)</code></pre>
+    <pre class="prettyprint"><code>import WComorWebsocketServer from 'w-comor-websocket/dist/w-comor-websocket-server.umd.js'function random(min, max) {    return Math.floor(Math.random() * max) + min}let opt = {    port: 8080,    authenticate: function(token) {        //使用token驗證使用者身份        return new Promise(function(resolve, reject) {            setTimeout(function() {                resolve(true)            }, 1000)        })    },    filterFuncs: function(token, funcs) {        //使用token驗證使用者身份與過濾可用funcs        return new Promise(function(resolve, reject) {            funcs = funcs.filter(function(v) {                return v.indexOf('Hide') &lt; 0            })            resolve(funcs)        })    },    onClientChange: function(clients, opt) {        console.log(`Server[port:${opt.port}] now clients: ${clients.length}`)    },    funcs: {        'group.plus': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 * p2)                }, random(100, 3000))            })        },        'group.div': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 / p2)                }, random(100, 3000))            })        },        'add': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        'addHide': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 + p2)                }, random(100, 3000))            })        },        'minu': function({ p1, p2 }) {            return new Promise(function(resolve, reject) {                setTimeout(function() {                    resolve(p1 - p2)                }, random(100, 3000))            })        },    },}new WComorWebsocketServer(opt)</code></pre>
 
 
 
@@ -834,7 +834,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sun Dec 15 2019 13:19:38 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Tue Dec 31 2019 14:02:02 GMT+0800 (GMT+08:00) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

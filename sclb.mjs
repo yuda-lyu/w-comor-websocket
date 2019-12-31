@@ -1,5 +1,5 @@
-import WsClient from './src/WsClient.mjs'
-//import WsClient from './dist/ws-client.umd.js'
+import WComorWebsocketClient from './src/WComorWebsocketClient.mjs'
+//import WComorWebsocketClient from './dist/w-comor-websocket-client.umd.js'
 
 let opt = {
     url: 'ws://localhost:8081',
@@ -18,7 +18,7 @@ let opt = {
     },
 }
 
-new WsClient(opt)
+new WComorWebsocketClient(opt)
     .then(function(wo) {
         console.log('client nodejs[port:8081]: funcs: ', wo)
 

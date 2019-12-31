@@ -1,5 +1,5 @@
-import WsServer from './src/WsServer.mjs'
-//import WsServer from './dist/ws-server.umd.js'
+import WComorWebsocketServer from './src/WComorWebsocketServer.mjs'
+//import WComorWebsocketServer from './dist/w-comor-websocket-server.umd.js'
 
 function random(min, max) {
     return Math.floor(Math.random() * max) + min
@@ -69,7 +69,7 @@ function getOpt(port) {
 }
 
 let opt = getOpt(8080)
-new WsServer(opt)
+new WComorWebsocketServer(opt)
 
 let opt2 = getOpt(8081)
-new WsServer(opt2)
+new WComorWebsocketServer(opt2)

@@ -5,7 +5,7 @@ A websocket communicator in nodejs and browser. Mapping functions from nodejs to
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
 [![Build Status](https://travis-ci.org/yuda-lyu/w-comor-websocket.svg?branch=master)](https://travis-ci.org/yuda-lyu/w-comor-websocket) 
 [![license](https://img.shields.io/npm/l/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
-[![gzip file size](http://img.badgesize.io/yuda-lyu/w-comor-websocket/master/dist/ws-server.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-comor-websocket)
+[![gzip file size](http://img.badgesize.io/yuda-lyu/w-comor-websocket/master/dist/w-comor-websocket-server.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-comor-websocket)
 [![npm download](https://img.shields.io/npm/dt/w-comor-websocket.svg)](https://npmjs.org/package/w-comor-websocket) 
 [![jsdelivr download](https://img.shields.io/jsdelivr/npm/hm/w-comor-websocket.svg)](https://www.jsdelivr.com/package/npm/w-comor-websocket)
 
@@ -14,22 +14,22 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 
 ## Parts
 `w-comor-websocket` includes 2 parts: 
-* `ws-server`: for nodejs server
-* `ws-client`: for nodejs and browser client
+* `w-comor-websocket-server`: for nodejs server
+* `w-comor-websocket-client`: for nodejs and browser client
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** `ws-server` depends on `ws`.
+> **Note:** `w-comor-websocket-server` depends on `ws`.
 
-> **Note:** `ws-client` depends on `ws`, `w-websocket-client` and `wolfy87-eventemitter`.
+> **Note:** `w-comor-websocket-client` depends on `ws`, `w-websocket-client` and `wolfy87-eventemitter`.
 
 ```alias
 npm i w-comor-websocket
 ```
-#### Example for `ws-server`:
+#### Example for `w-comor-websocket-server`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/srv.mjs)]
 ```alias
-import WsServer from 'w-comor-websocket/dist/ws-server.umd.js'
+import WComorWebsocketServer from 'w-comor-websocket/dist/w-comor-websocket-server.umd.js'
 
 function random(min, max) {
     return Math.floor(Math.random() * max) + min
@@ -96,12 +96,12 @@ let opt = {
     },
 }
 
-new WsServer(opt)
+new WComorWebsocketServer(opt)
 ```
-#### Example for `ws-client`:
+#### Example for `w-comor-websocket-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/scla.mjs)]
 ```alias
-import WsClient from 'w-comor-websocket/dist/ws-client.umd.js'
+import WComorWebsocketClient from 'w-comor-websocket/dist/w-comor-websocket-client.umd.js'
 
 //opt
 let opt = {
@@ -121,8 +121,8 @@ let opt = {
     },
 }
 
-//WsClient
-new WsClient(opt)
+//WComorWebsocketClient
+new WComorWebsocketClient(opt)
     .then(function(wo) {
         console.log('client nodejs: funcs: ', wo)
         
@@ -173,17 +173,17 @@ new WsClient(opt)
 ```
 
 ### In a browser(UMD module):
-> **Note:** `ws-client` does't depend on any package in browser.
+> **Note:** `w-comor-websocket-client` does't depend on any package in browser.
 
 [Optional] Add script with nomodule for IE11.
 ```alias
 <script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
 ```
-[Necessary] Add script for ws-client.
+[Necessary] Add script for w-comor-websocket-client.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.26/dist/ws-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.27/dist/w-comor-websocket-client.umd.js"></script>
 ```
-#### Example for `ws-client`:
+#### Example for `w-comor-websocket-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
 ```alias
 //opt
@@ -204,9 +204,9 @@ let opt = {
     },
 }
 
-//WsClient
-let WsClient = window['ws-client']
-new WsClient(opt)
+//WComorWebsocketClient
+let WComorWebsocketClient = window['w-comor-websocket-client']
+new WComorWebsocketClient(opt)
     .then(function(wo) {
         console.log('client web: funcs: ', wo)
         
