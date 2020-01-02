@@ -1,5 +1,5 @@
 /*!
- * w-comor-websocket-server v1.0.28
+ * w-comor-websocket-server v1.0.29
  * (c) 2018-2019 yuda-lyu(semisphere)
  * Released under the MIT License.
  */

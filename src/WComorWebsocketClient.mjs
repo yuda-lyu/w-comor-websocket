@@ -1,9 +1,9 @@
-import EventEmitter from 'wolfy87-eventemitter'
 import WSC from 'w-websocket-client/src/WWebsocketClient.mjs'
 import get from 'lodash/get'
 import set from 'lodash/set'
 import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
+import Evem from 'wsemi/src/evem.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 
@@ -99,7 +99,7 @@ function WComorWebsocketClient(opt) {
 
 
     //ev
-    let ev = new EventEmitter()
+    let ev = new Evem()
 
 
     function core() {

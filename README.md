@@ -21,7 +21,7 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 ### Using npm(ES6 module):
 > **Note:** `w-comor-websocket-server` depends on `ws`.
 
-> **Note:** `w-comor-websocket-client` depends on `ws`, `w-websocket-client` and `wolfy87-eventemitter`.
+> **Note:** `w-comor-websocket-client` depends on `ws` and `w-websocket-client`.
 
 ```alias
 npm i w-comor-websocket
@@ -181,7 +181,7 @@ new WComorWebsocketClient(opt)
 ```
 [Necessary] Add script for w-comor-websocket-client.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.28/dist/w-comor-websocket-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.29/dist/w-comor-websocket-client.umd.js"></script>
 ```
 #### Example for `w-comor-websocket-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
