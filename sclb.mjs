@@ -66,3 +66,5 @@ new WComorWebsocketClient(opt)
     .catch(function(err) {
         console.log('client nodejs[port:8081]: catch: ', err)
     })
+
+//node --experimental-modules --es-module-specifier-resolution=node sclb.mjs

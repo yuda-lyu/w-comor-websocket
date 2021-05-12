@@ -19,9 +19,9 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 
 ## Installation
 ### Using npm(ES6 module):
-> **Note:** `w-comor-websocket-server` depends on `ws`.
+> **Note:** `w-comor-websocket-server` is mainly dependent on `ws`.
 
-> **Note:** `w-comor-websocket-client` depends on `ws` and `w-websocket-client`.
+> **Note:** `w-comor-websocket-client` is mainly dependent on `ws` and `w-websocket-client`.
 
 ```alias
 npm i w-comor-websocket
