@@ -1,4 +1,4 @@
-import WebSocket from 'ws'
+import WebSocket, { WebSocketServer } from 'ws'
 import keys from 'lodash/keys'
 import get from 'lodash/get'
 import genPm from 'wsemi/src/genPm.mjs'
@@ -6,7 +6,7 @@ import haskey from 'wsemi/src/haskey.mjs'
 import urlParse from 'wsemi/src/urlParse.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
-import arrhas from 'wsemi/src/arrhas.mjs'
+import arrHas from 'wsemi/src/arrHas.mjs'
 
 
 /**
@@ -104,10 +104,6 @@ function WComorWebsocketServer(opt) {
     }
 
 
-    //WebSocketServer
-    let WebSocketServer = WebSocket.Server
-
-
     //authenticate
     function authenticate(token) {
         let pm = genPm()
@@ -144,7 +140,26 @@ function WComorWebsocketServer(opt) {
 
                 })
 
-        }
+        },
+        perMessageDeflate: {
+            zlibDeflateOptions: {
+                // See zlib defaults.
+                chunkSize: 1024,
+                memLevel: 7,
+                level: 3
+            },
+            zlibInflateOptions: {
+                chunkSize: 10 * 1024
+            },
+            // Other options settable:
+            clientNoContextTakeover: true, // Defaults to negotiated value.
+            serverNoContextTakeover: true, // Defaults to negotiated value.
+            serverMaxWindowBits: 10, // Defaults to negotiated value.
+            // Below options specified as default values.
+            concurrencyLimit: 10, // Limits zlib concurrency for perf.
+            threshold: 1024 // Size (in bytes) below which messages
+            // should not be compressed if context takeover is disabled.
+        },
     }
 
 
@@ -197,7 +212,7 @@ function WComorWebsocketServer(opt) {
 
                 }
                 //call
-                else if (arrhas(funcs, func)) {
+                else if (arrHas(funcs, func)) {
 
                     //call func in opt.funcs
                     let output = await opt['funcs'][func](input)
@@ -237,8 +252,11 @@ function WComorWebsocketServer(opt) {
 
 
         //message
-        wsc.on('message', function(message) {
-            //console.log('message', message)
+        wsc.on('message', function(message, isBinary) {
+            // console.log('received: %s', message, isBinary)
+
+            //ws伺服器端改收到utf8的buffer, 得轉換成字串才能j2o
+            message = Buffer.from(message).toString('utf8')
 
             //data
             let data = j2o(message)

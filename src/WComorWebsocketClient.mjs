@@ -5,6 +5,7 @@ import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import Evem from 'wsemi/src/evem.mjs'
 import j2o from 'wsemi/src/j2o.mjs'
+import isWindow from 'wsemi/src/isWindow.mjs'
 import isfun from 'wsemi/src/isfun.mjs'
 
 
@@ -100,6 +101,11 @@ function WComorWebsocketClient(opt) {
 
     //ev
     let ev = new Evem()
+
+
+    //env
+    let env = isWindow() ? 'browser' : 'nodejs'
+    // console.log('env', env)
 
 
     function core() {
@@ -202,6 +208,17 @@ function WComorWebsocketClient(opt) {
 
         //fMessage
         function fMessage(message) {
+            // console.log('fMessage message', message)
+
+            if (env === 'browser') {
+                //瀏覽器端會自動轉string
+            }
+            else { //nodejs
+
+                //message
+                message = Buffer.from(message).toString('utf8')
+
+            }
 
             //data
             let data = j2o(message)
