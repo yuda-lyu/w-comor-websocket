@@ -3,7 +3,6 @@ A websocket communicator in nodejs and browser. Mapping functions from nodejs to
 
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
-[![Build Status](https://travis-ci.org/yuda-lyu/w-comor-websocket.svg?branch=master)](https://travis-ci.org/yuda-lyu/w-comor-websocket) 
 [![license](https://img.shields.io/npm/l/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
 [![gzip file size](http://img.badgesize.io/yuda-lyu/w-comor-websocket/master/dist/w-comor-websocket-server.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-comor-websocket)
 [![npm download](https://img.shields.io/npm/dt/w-comor-websocket.svg)](https://npmjs.org/package/w-comor-websocket) 
