@@ -1,16 +1,15 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.0.34",
-  "description": "A websocket communicator in nodejs and browser. Mapping functions in nodejs to end points.",
+  "version": "1.0.35",
   "main": "dist/w-comor-websocket-server.umd.js",
   "dependencies": {
     "lodash": "^4.17.21",
-    "w-websocket-client": "^1.0.24",
-    "ws": "^8.5.0",
-    "wsemi": "^1.6.54"
+    "w-websocket-client": "^1.0.25",
+    "ws": "^8.12.0",
+    "wsemi": "^1.6.87"
   },
   "devDependencies": {
-    "w-package-tools": "^1.0.65"
+    "w-package-tools": "^1.0.66"
   },
   "scripts": {
     "test": "mocha --parallel --timeout 60000 --experimental-modules --es-module-specifier-resolution=node",
@@ -31,9 +30,5 @@
     "RPC"
   ],
   "author": "yuda-lyu(semisphere)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yuda-lyu/w-comor-websocket/issues"
-  },
-  "homepage": "https://github.com/yuda-lyu/w-comor-websocket#readme"
+  "license": "MIT"
 }
