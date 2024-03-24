@@ -1,6 +1,6 @@
 import WSC from 'w-websocket-client/src/WWebsocketClient.mjs'
-import get from 'lodash-es/get'
-import set from 'lodash-es/set'
+import get from 'lodash-es/get.js'
+import set from 'lodash-es/set.js'
 import genPm from 'wsemi/src/genPm.mjs'
 import genID from 'wsemi/src/genID.mjs'
 import Evem from 'wsemi/src/evem.mjs'
@@ -175,9 +175,9 @@ function WComorWebsocketClient(opt) {
             //msg
             let msg = {
                 token: opt.token,
-                _id: _id,
-                func: func,
-                input: input,
+                _id,
+                func,
+                input,
             }
 
             //send

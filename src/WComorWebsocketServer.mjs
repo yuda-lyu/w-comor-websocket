@@ -1,6 +1,6 @@
 import WebSocket, { WebSocketServer } from 'ws'
-import keys from 'lodash-es/keys'
-import get from 'lodash-es/get'
+import keys from 'lodash-es/keys.js'
+import get from 'lodash-es/get.js'
 import genPm from 'wsemi/src/genPm.mjs'
 import haskey from 'wsemi/src/haskey.mjs'
 import urlParse from 'wsemi/src/urlParse.mjs'
@@ -208,7 +208,7 @@ function WComorWebsocketServer(opt) {
                     }
 
                     //add output
-                    data['output'] = { sys: 'sys', funcs: funcs }
+                    data['output'] = { sys: 'sys', funcs }
 
                 }
                 //call
