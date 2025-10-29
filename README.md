@@ -4,7 +4,6 @@ A websocket communicator in nodejs and browser. Mapping functions from nodejs to
 ![language](https://img.shields.io/badge/language-JavaScript-orange.svg) 
 [![npm version](http://img.shields.io/npm/v/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
 [![license](https://img.shields.io/npm/l/w-comor-websocket.svg?style=flat)](https://npmjs.org/package/w-comor-websocket) 
-[![gzip file size](http://img.badgesize.io/yuda-lyu/w-comor-websocket/master/dist/w-comor-websocket-server.umd.js.svg?compression=gzip)](https://github.com/yuda-lyu/w-comor-websocket)
 [![npm download](https://img.shields.io/npm/dt/w-comor-websocket.svg)](https://npmjs.org/package/w-comor-websocket) 
 [![npm download](https://img.shields.io/npm/dm/w-comor-websocket.svg)](https://npmjs.org/package/w-comor-websocket) 
 [![jsdelivr download](https://img.shields.io/jsdelivr/npm/hm/w-comor-websocket.svg)](https://www.jsdelivr.com/package/npm/w-comor-websocket)
@@ -18,14 +17,12 @@ To view documentation or get support, visit [docs](https://yuda-lyu.github.io/w-
 * `w-comor-websocket-client`: for nodejs and browser client
 
 ## Installation
+
 ### Using npm(ES6 module):
-> **Note:** `w-comor-websocket-server` is mainly dependent on `ws`.
-
-> **Note:** `w-comor-websocket-client` is mainly dependent on `ws` and `w-websocket-client`.
-
 ```alias
 npm i w-comor-websocket
 ```
+
 #### Example for `w-comor-websocket-server`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/srv.mjs)]
 ```alias
@@ -98,6 +95,7 @@ let opt = {
 
 new WComorWebsocketServer(opt)
 ```
+
 #### Example for `w-comor-websocket-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/scla.mjs)]
 ```alias
@@ -173,16 +171,12 @@ new WComorWebsocketClient(opt)
 ```
 
 ### In a browser(UMD module):
-> **Note:** `w-comor-websocket-client` does't depend on any package in browser.
 
-[Optional] Add script with nomodule for IE11.
-```alias
-<script nomodule src="https://cdn.jsdelivr.net/npm/@babel/polyfill/dist/polyfill.min.js"></script>
-```
-[Necessary] Add script for w-comor-websocket-client.
+Add script for w-comor-websocket-client.
 ```alias
 <script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.0.38/dist/w-comor-websocket-client.umd.js"></script>
 ```
+
 #### Example for `w-comor-websocket-client`:
 > **Link:** [[dev source code](https://github.com/yuda-lyu/w-comor-websocket/blob/master/web.html)]
 ```alias
