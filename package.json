@@ -1,11 +1,11 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "dist/w-comor-websocket-server.umd.js",
   "dependencies": {
-    "w-websocket-client": "^1.0.45",
+    "w-websocket-client": "^1.0.46",
     "ws": "^8.16.0",
-    "wsemi": "^1.9.0"
+    "wsemi": "^1.9.1"
   },
   "devDependencies": {
     "w-package-tools": "^1.1.16"
