@@ -174,7 +174,7 @@ new WComorWebsocketClient(opt)
 
 Add script for w-comor-websocket-client.
 ```alias
-<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.1.5/dist/w-comor-websocket-client.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/w-comor-websocket@1.1.6/dist/w-comor-websocket-client.umd.js"></script>
 ```
 
 #### Example for `w-comor-websocket-client`:
