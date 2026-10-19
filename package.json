@@ -1,14 +1,14 @@
 {
   "name": "w-comor-websocket",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "main": "dist/w-comor-websocket-server.umd.js",
   "dependencies": {
-    "w-websocket-client": "^1.0.50",
+    "w-websocket-client": "^1.0.51",
     "ws": "^8.16.0",
-    "wsemi": "^1.9.12"
+    "wsemi": "^1.9.21"
   },
   "devDependencies": {
-    "w-package-tools": "^1.1.16"
+    "w-package-tools": "^1.1.21"
   },
   "scripts": {
     "test": "mocha --parallel \"test/*.test.mjs\" --timeout 180000",
